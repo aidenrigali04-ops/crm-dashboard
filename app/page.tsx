@@ -94,34 +94,34 @@ export default async function Dashboard() {
   }, {});
 
   return (
-    <div className="p-6 space-y-6 max-w-[1400px]">
+    <div className="mx-auto max-w-[1400px] space-y-4 p-4 sm:space-y-6 sm:p-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-lg font-medium text-zinc-100">Command center</h1>
-          <p className="text-sm text-zinc-500 mt-0.5">
-            {totalLeads.toLocaleString()} total leads · {closedWon} closed won · ${currentMRR.toLocaleString()} MRR
+          <p className="mt-0.5 text-xs text-zinc-500 sm:text-sm">
+            {totalLeads.toLocaleString()} leads · {closedWon} won · ${currentMRR.toLocaleString()} MRR
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <div className="h-2 w-2 rounded-full bg-teal-400 animate-pulse" />
+          <div className="h-2 w-2 animate-pulse rounded-full bg-teal-400" />
           <span className="text-xs text-zinc-500">Agents running</span>
         </div>
       </div>
 
       {/* MRR progress bar */}
-      <div className="bg-zinc-900 border border-zinc-800/60 rounded-xl p-4">
-        <div className="flex items-center justify-between mb-3">
+      <div className="rounded-xl border border-zinc-800/60 bg-zinc-900 p-4">
+        <div className="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-xs text-zinc-500 font-mono uppercase tracking-wider">MRR progress</p>
-            <p className="text-2xl font-medium text-zinc-100 mt-1">
+            <p className="text-xs font-mono uppercase tracking-wider text-zinc-500">MRR progress</p>
+            <p className="mt-1 text-xl font-medium text-zinc-100 sm:text-2xl">
               ${currentMRR.toLocaleString()}
-              <span className="text-sm text-zinc-500 font-normal ml-2">/ $40,000 target</span>
+              <span className="ml-2 text-sm font-normal text-zinc-500">/ $40k</span>
             </p>
           </div>
-          <div className="text-right">
-            <p className="text-2xl font-medium text-teal-400">{mrrPct}%</p>
-            <p className="text-xs text-zinc-500 mt-1">{(MRR_TARGET - currentMRR).toLocaleString()} remaining</p>
+          <div className="sm:text-right">
+            <p className="text-xl font-medium text-teal-400 sm:text-2xl">{mrrPct}%</p>
+            <p className="mt-1 text-xs text-zinc-500">${(MRR_TARGET - currentMRR).toLocaleString()} left</p>
           </div>
         </div>
         <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
@@ -140,14 +140,14 @@ export default async function Dashboard() {
       </div>
 
       {/* KPI strip */}
-      <div className="grid grid-cols-3 lg:grid-cols-6 gap-3">
+      <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-3 xl:grid-cols-6">
         {KPIS.map(({ label, value, icon: Icon, color }) => (
-          <div key={label} className="bg-zinc-900 border border-zinc-800/60 rounded-xl p-3.5">
-            <div className="flex items-center gap-2 mb-2">
+          <div key={label} className="rounded-xl border border-zinc-800/60 bg-zinc-900 p-3 sm:p-3.5">
+            <div className="mb-1.5 flex items-center gap-2 sm:mb-2">
               <Icon size={13} className={color} />
-              <p className="text-[11px] text-zinc-500 font-mono">{label}</p>
+              <p className="text-[10px] font-mono text-zinc-500 sm:text-[11px]">{label}</p>
             </div>
-            <p className="text-xl font-medium text-zinc-100">{value}</p>
+            <p className="text-lg font-medium text-zinc-100 sm:text-xl">{value}</p>
           </div>
         ))}
       </div>
@@ -173,7 +173,7 @@ export default async function Dashboard() {
             <a
               key={lead.id}
               href={`/leads/${lead.id}`}
-              className="flex items-center gap-3 px-4 py-2.5 hover:bg-zinc-800/40 transition-colors"
+              className="flex items-center gap-3 px-4 py-3 active:bg-zinc-800/40 sm:py-2.5 sm:hover:bg-zinc-800/40"
             >
               <div className="w-7 h-7 rounded-full bg-zinc-800 flex items-center justify-center shrink-0">
                 <span className="text-[11px] font-medium text-zinc-400">

@@ -3,6 +3,7 @@ import { STATUS_LABELS, STATUS_COLORS, DISC_COLORS, INDUSTRY_LABELS } from "@/li
 import { timeAgo } from "@/lib/utils";
 import { LeadFilters } from "@/components/leads/lead-filters";
 import { LeadRow } from "@/components/leads/lead-row";
+import { LeadMobileList } from "@/components/leads/lead-mobile-list";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -51,10 +52,10 @@ export default async function LeadsPage({ searchParams }: { searchParams: Search
   return (
     <div className="h-full flex flex-col">
       {/* Header */}
-      <div className="px-6 py-4 border-b border-zinc-800/60 flex items-center justify-between shrink-0">
+      <div className="shrink-0 border-b border-zinc-800/60 px-4 py-4 sm:px-6">
         <div>
           <h1 className="text-base font-medium text-zinc-100">Leads</h1>
-          <p className="text-xs text-zinc-500 mt-0.5 font-mono">{count?.toLocaleString()} total</p>
+          <p className="mt-0.5 font-mono text-xs text-zinc-500">{count?.toLocaleString()} total</p>
         </div>
       </div>
 
@@ -63,8 +64,10 @@ export default async function LeadsPage({ searchParams }: { searchParams: Search
         <LeadFilters currentParams={searchParams as Record<string, string | undefined>} />
       </Suspense>
 
-      {/* Table */}
-      <div className="flex-1 overflow-auto">
+      <LeadMobileList leads={leads ?? []} />
+
+      {/* Desktop table */}
+      <div className="hidden flex-1 overflow-auto md:block">
         <table className="w-full text-sm">
           <thead className="sticky top-0 bg-zinc-900/95 backdrop-blur-sm border-b border-zinc-800/60">
             <tr>
@@ -153,7 +156,7 @@ export default async function LeadsPage({ searchParams }: { searchParams: Search
         </table>
 
         {(leads ?? []).length === 0 && (
-          <div className="flex items-center justify-center h-48 text-zinc-600 text-sm">
+          <div className="hidden h-48 items-center justify-center text-sm text-zinc-600 md:flex">
             No leads match these filters
           </div>
         )}
@@ -161,7 +164,7 @@ export default async function LeadsPage({ searchParams }: { searchParams: Search
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="px-6 py-3 border-t border-zinc-800/60 flex items-center justify-between shrink-0">
+        <div className="flex flex-col gap-3 border-t border-zinc-800/60 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <p className="text-xs text-zinc-500 font-mono">
             Page {currentPage} of {totalPages} · {count?.toLocaleString()} leads
           </p>

@@ -157,7 +157,7 @@ export default async function AgentsPage() {
   const recentHarvests = (harvests ?? []).slice(0, 24).reverse();
 
   return (
-    <div className="p-6 space-y-6 max-w-5xl">
+    <div className="p-4 space-y-4 sm:p-6 sm:space-y-6 max-w-5xl">
       <div>
         <h1 className="text-base font-medium text-zinc-100">Agent monitor</h1>
         <p className="text-xs text-zinc-500 mt-0.5">All 8 agents · Trigger.dev · Claude API</p>

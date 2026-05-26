@@ -20,7 +20,7 @@ export default async function PipelinePage() {
   const total = leads?.length ?? 0;
 
   return (
-    <div className="p-6 space-y-6 max-w-4xl">
+    <div className="p-4 space-y-4 sm:p-6 sm:space-y-6 max-w-4xl">
       <div>
         <h1 className="text-base font-medium text-zinc-100">Pipeline</h1>
         <p className="text-xs text-zinc-500 mt-0.5 font-mono">{total.toLocaleString()} leads across all stages</p>

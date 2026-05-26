@@ -56,14 +56,14 @@ export default async function LeadDetailPage({ params }: { params: { id: string 
   const replies  = lead.reply_log ?? [];
 
   return (
-    <div className="max-w-4xl p-6 space-y-5">
+    <div className="mx-auto max-w-4xl space-y-5 p-4 sm:p-6">
       {/* Back + header */}
       <div>
         <Link href="/leads" className="flex items-center gap-1.5 text-xs text-zinc-500 hover:text-zinc-300 mb-3 transition-colors w-fit">
           <ArrowLeft size={12} />
           All leads
         </Link>
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex items-start gap-3">
             <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center shrink-0 mt-0.5">
               <span className="text-sm font-medium text-zinc-400">
@@ -83,19 +83,19 @@ export default async function LeadDetailPage({ params }: { params: { id: string 
             </div>
           </div>
           {/* Contact buttons */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex flex-wrap items-center gap-2">
             {lead.email && (
-              <a href={`mailto:${lead.email}`} className="flex items-center gap-1.5 px-3 py-1.5 text-xs bg-zinc-800 hover:bg-zinc-700 text-zinc-300 rounded transition-colors">
+              <a href={`mailto:${lead.email}`} className="flex min-h-[44px] items-center gap-1.5 rounded-lg bg-zinc-800 px-3 py-2 text-xs text-zinc-300 active:bg-zinc-700 sm:min-h-0 sm:rounded sm:py-1.5">
                 <Mail size={12} /> Email
               </a>
             )}
             {lead.phone && (
-              <a href={`tel:${lead.phone}`} className="flex items-center gap-1.5 px-3 py-1.5 text-xs bg-zinc-800 hover:bg-zinc-700 text-zinc-300 rounded transition-colors">
+              <a href={`tel:${lead.phone}`} className="flex min-h-[44px] items-center gap-1.5 rounded-lg bg-zinc-800 px-3 py-2 text-xs text-zinc-300 active:bg-zinc-700 sm:min-h-0 sm:rounded sm:py-1.5">
                 <Phone size={12} /> Call
               </a>
             )}
             {lead.linkedin_url && (
-              <a href={lead.linkedin_url} target="_blank" className="flex items-center gap-1.5 px-3 py-1.5 text-xs bg-zinc-800 hover:bg-zinc-700 text-zinc-300 rounded transition-colors">
+              <a href={lead.linkedin_url} target="_blank" className="flex min-h-[44px] items-center gap-1.5 rounded-lg bg-zinc-800 px-3 py-2 text-xs text-zinc-300 active:bg-zinc-700 sm:min-h-0 sm:rounded sm:py-1.5">
                 <Linkedin size={12} /> LinkedIn
               </a>
             )}
@@ -104,7 +104,7 @@ export default async function LeadDetailPage({ params }: { params: { id: string 
       </div>
 
       {/* Info grid */}
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div className="bg-zinc-900 border border-zinc-800/60 rounded-xl p-3.5 space-y-2">
           <p className="text-[10px] text-zinc-500 font-mono uppercase tracking-wider">Contact info</p>
           {[
@@ -158,7 +158,7 @@ export default async function LeadDetailPage({ params }: { params: { id: string 
             <p className="text-xs text-zinc-400 font-mono uppercase tracking-wider">Psychological profile</p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
             {/* DISC */}
             <div className="bg-zinc-800/60 rounded-lg p-3 text-center">
               <p className="text-[10px] text-zinc-500 font-mono mb-1">DISC type</p>
@@ -217,7 +217,7 @@ export default async function LeadDetailPage({ params }: { params: { id: string 
           )}
 
           {/* Opening hook + do not */}
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div className="bg-green-900/10 border border-green-800/30 rounded-lg p-3">
               <p className="text-[10px] text-green-600 font-mono mb-1.5">Opening hook</p>
               <p className="text-xs text-zinc-300 leading-relaxed">{profile.opening_hook ?? "—"}</p>

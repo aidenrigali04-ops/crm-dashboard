@@ -31,8 +31,8 @@ export function PipelineFunnel({ statusCounts, statusOrder, total }: Props) {
           const barPct = maxCount > 0 ? (count / maxCount * 100) : 0;
           const color = STATUS_COLORS[status] ?? "#52525b";
           return (
-            <div key={status} className="flex items-center gap-3">
-              <span className="text-[11px] text-zinc-500 w-28 shrink-0 truncate font-mono">
+            <div key={status} className="flex items-center gap-2 sm:gap-3">
+              <span className="w-20 shrink-0 truncate font-mono text-[10px] text-zinc-500 sm:w-28 sm:text-[11px]">
                 {STATUS_LABELS[status] ?? status}
               </span>
               <div className="flex-1 h-5 bg-zinc-800 rounded-sm overflow-hidden">

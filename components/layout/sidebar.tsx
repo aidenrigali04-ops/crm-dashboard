@@ -22,38 +22,41 @@ const BOTTOM = [
   { href: "/settings",  label: "Settings",    icon: Settings },
 ];
 
-export function Sidebar() {
+interface Props {
+  onNavigate?: () => void;
+}
+
+export function Sidebar({ onNavigate }: Props) {
   const path = usePathname();
 
   return (
-    <aside className="w-56 h-screen flex flex-col bg-zinc-900 border-r border-zinc-800/60 shrink-0">
-      {/* Logo */}
-      <div className="px-4 py-5 border-b border-zinc-800/60">
+    <aside className="flex h-full w-56 flex-col border-r border-zinc-800/60 bg-zinc-900 md:h-screen">
+      <div className="border-b border-zinc-800/60 px-4 py-5">
         <div className="flex items-center gap-2.5">
-          <div className="w-6 h-6 rounded bg-teal-500 flex items-center justify-center shrink-0">
+          <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded bg-teal-500">
             <Zap size={13} className="text-zinc-950" />
           </div>
           <div>
-            <p className="text-sm font-medium text-zinc-100 leading-none">AI Marketing</p>
-            <p className="text-[11px] text-zinc-500 mt-0.5 leading-none">Agent CRM</p>
+            <p className="text-sm font-medium leading-none text-zinc-100">AI Marketing</p>
+            <p className="mt-0.5 text-[11px] leading-none text-zinc-500">Agent CRM</p>
           </div>
         </div>
       </div>
 
-      {/* Main nav */}
-      <nav className="flex-1 px-2 py-3 space-y-0.5 overflow-y-auto">
-        <p className="px-2 pb-1.5 text-[10px] font-medium text-zinc-600 uppercase tracking-wider">
+      <nav className="flex-1 space-y-0.5 overflow-y-auto px-2 py-3">
+        <p className="px-2 pb-1.5 text-[10px] font-medium uppercase tracking-wider text-zinc-600">
           Command
         </p>
         {NAV.map(({ href, label, icon: Icon }) => (
           <Link
             key={href}
             href={href}
+            onClick={onNavigate}
             className={cn(
-              "flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm transition-colors",
-              path === href
+              "flex min-h-[44px] items-center gap-2.5 rounded-md px-2.5 py-2 text-sm transition-colors",
+              path === href || (href !== "/" && path.startsWith(href))
                 ? "bg-zinc-800 text-zinc-100"
-                : "text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/60"
+                : "text-zinc-400 active:bg-zinc-800/60 active:text-zinc-200"
             )}
           >
             <Icon size={15} className="shrink-0" />
@@ -62,17 +65,17 @@ export function Sidebar() {
         ))}
       </nav>
 
-      {/* Bottom nav */}
-      <div className="px-2 py-3 border-t border-zinc-800/60 space-y-0.5">
+      <div className="space-y-0.5 border-t border-zinc-800/60 px-2 py-3">
         {BOTTOM.map(({ href, label, icon: Icon }) => (
           <Link
             key={href}
             href={href}
+            onClick={onNavigate}
             className={cn(
-              "flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm transition-colors",
+              "flex min-h-[44px] items-center gap-2.5 rounded-md px-2.5 py-2 text-sm transition-colors",
               path === href
                 ? "bg-zinc-800 text-zinc-100"
-                : "text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/60"
+                : "text-zinc-400 active:bg-zinc-800/60 active:text-zinc-200"
             )}
           >
             <Icon size={15} className="shrink-0" />

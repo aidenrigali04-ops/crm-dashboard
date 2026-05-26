@@ -7,7 +7,7 @@ export default function SettingsPage() {
   ];
 
   return (
-    <div className="p-6 space-y-6 max-w-2xl">
+    <div className="p-4 space-y-4 sm:p-6 sm:space-y-6 max-w-2xl">
       <div>
         <h1 className="text-base font-medium text-zinc-100">Settings</h1>
         <p className="text-xs text-zinc-500 mt-0.5">Environment configuration status</p>
